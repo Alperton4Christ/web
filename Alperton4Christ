@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alperton for Christ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Georgia, 'Times New Roman', serif;
+            background-color: white;
+            color: black;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        
+        .container {
+            max-width: 32rem;
+            width: 100%;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            font-weight: normal;
+        }
+        
+        .search-container {
+            max-width: 18rem;
+            margin: 0 auto;
+        }
+        
+        input {
+            width: 100%;
+            height: 3rem;
+            text-align: center;
+            border: 2px solid black;
+            border-radius: 0;
+            background-color: white;
+            color: black;
+            font-size: 1rem;
+            font-family: Georgia, 'Times New Roman', serif;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: black;
+        }
+        
+        @media (min-width: 768px) {
+            h1 {
+                font-size: 3.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>What is your greatest need?</h1>
+        <div class="search-container">
+            <input type="text" id="searchInput">
+        </div>
+    </div>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        
+        const christianTerms = [
+            'jesus', 'christ', 'god', 'lord', 'saviour', 'savior',
+            'holy spirit', 'father', 'prayer', 'faith', 'salvation',
+            'grace', 'mercy', 'blessing', 'church', 'christian',
+            'bible', 'scripture', 'worship', 'praise'
+        ];
+        
+        function handleSearch(value) {
+            if (!value.trim()) return;
+            
+            const lowerValue = value.toLowerCase();
+            const isChristianRelated = christianTerms.some(term => lowerValue.includes(term));
+            
+            if (!isChristianRelated) {
+                // Create and navigate to Jesus Christ page
+                document.body.innerHTML = `
+                    <div style="min-height: 100vh; background-color: white; display: flex; align-items: center; justify-content: center; padding: 1rem;">
+                        <h1 style="font-size: 2.5rem; font-family: Georgia, 'Times New Roman', serif; color: black; text-align: center;">Jesus Christ</h1>
+                    </div>
+                `;
+            }
+        }
+        
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                handleSearch(this.value);
+            }
+        });
+    </script>
+</body>
+</html>
